@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Terms - Gensokyo Game Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="power.jpg" type="image/jpeg">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            background: url('ha.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        .term {
+            margin-bottom: 2rem;
+        }
+        
+        .term h3 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin: 1rem 0;
+            padding: 0.8rem 1.5rem;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>IMPORTANT <span>TERMS</span></h1>
+            <p class="subtitle">Specific terminology for Touhou games.</p>
+            <a href="where-to-start.html" class="back-button">← Back to Where to Start</a>
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <main>
+        <div class="terms-container">
+            <div class="term">
+                <h3>Danmaku</h3>
+                <p>Literally means "bullet curtain" Danmaku can refer to a genre of game, and the literal bullets an enemy fires at you.</p>
+            </div>
+            
+            <div class="term">
+                <h3>Hitbox</h3>
+                <p>The small area of your character that when touched by a bullet or enemy, will register a hit or death. In most Touhou games, this is just a tiny dot at the center of your character. This term is not specific to Touhou.</p>
+            </div>
+            
+            <div class="term">
+                <h3>Bomb</h3>
+                <p>A powerful attack that clears bullets on screen and deals damage to enemies. Usually limited in number.</p>
+            </div>
+            
+            <div class="term">
+                <h3>Spell Card</h3>
+                <p>Special attack patterns used by bosses, often with unique names and patterns.</p>
+            </div>
+
+            <div class="term">
+                <h3>Non-Spell</h3>
+                <p>Also called Nons, these are patterns which are not spell cards, and are usually between spell cards.</p>
+            </div>
+            
+            <div class="term">
+                <h3>Graze</h3>
+                <p>When a bullet comes very close to your hitbox without hitting it. Some games reward grazing with score or resources, such as Legacy of Lunatic Kingdom.</p>
+            </div>
+        </div>
+    </main>
+    <audio id="terms-bgm" src="sanae.mp3" preload="auto" loop></audio>
+    <div id="terms-song-toast" style="position: fixed; left: 24px; top: 64px; transform: none; background: rgba(0,0,0,0.8); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; z-index: 2000; opacity: 0; transition: opacity 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; font-family: 'Montserrat', 'Arial', sans-serif; font-weight: 700;">Now Playing- Mountain of Faith OST- Faith is for the Transient People <button id="terms-enable-audio" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; cursor: pointer; font-size: 0.85rem; line-height: 1; padding: 4px 8px; border-radius: 4px;">Enable Audio</button><button id="terms-toast-close" aria-label="Close" style="background: transparent; border: 0; color: #fff; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 4px;">×</button></div>
+
+    <script>
+        const termsNav = document.querySelector('.main-nav');
+        const termsAudio = document.getElementById('terms-bgm');
+        const termsToast = document.getElementById('terms-song-toast');
+        const TERMS_CONSENT_KEY = 'terms_bgm_consent';
+        let termsStarted = false;
+
+        function termsHideToast() {
+            if (!termsToast) return;
+            termsToast.style.opacity = '0';
+            setTimeout(() => { if (termsToast && termsToast.parentNode) termsToast.parentNode.removeChild(termsToast); }, 300);
+        }
+
+        function termsShowToast() {
+            if (!termsToast) return;
+            termsToast.style.opacity = '1';
+            setTimeout(() => { termsHideToast(); }, 6000);
+        }
+
+        function termsPositionToastBelowNav() {
+            if (!termsToast) return;
+            let top = 64;
+            if (termsNav) {
+                top = termsNav.getBoundingClientRect().height + 12;
+            }
+            termsToast.style.top = top + 'px';
+            termsToast.style.left = '24px';
+        }
+
+        function termsTryPlayAudio() {
+            if (!termsAudio) return;
+            try { termsAudio.autoplay = true; } catch (_) {}
+            if (!termsStarted) { try { termsAudio.currentTime = 0; } catch (_) {} }
+            termsAudio.play().then(() => {
+                try { localStorage.setItem(TERMS_CONSENT_KEY, '1'); } catch (_) {}
+                termsStarted = true;
+            }).catch(() => {});
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            termsShowToast();
+            termsPositionToastBelowNav();
+            try {
+                if (localStorage.getItem(TERMS_CONSENT_KEY) === '1') { termsTryPlayAudio(); } else { termsTryPlayAudio(); }
+            } catch (_) { termsTryPlayAudio(); }
+            const closeBtn = document.getElementById('terms-toast-close');
+            if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); termsHideToast(); });
+            const enableBtn = document.getElementById('terms-enable-audio');
+            if (enableBtn) enableBtn.addEventListener('click', (e) => { e.stopPropagation(); termsTryPlayAudio(); });
+        });
+
+        window.addEventListener('resize', termsPositionToastBelowNav);
+
+        const termsResumeOnInteract = () => {
+            termsTryPlayAudio();
+            document.removeEventListener('click', termsResumeOnInteract);
+            document.removeEventListener('keydown', termsResumeOnInteract);
+            document.removeEventListener('pointerdown', termsResumeOnInteract);
+            document.removeEventListener('touchstart', termsResumeOnInteract);
+        };
+        document.addEventListener('click', termsResumeOnInteract, { once: true });
+        document.addEventListener('keydown', termsResumeOnInteract, { once: true });
+        document.addEventListener('pointerdown', termsResumeOnInteract, { once: true });
+        document.addEventListener('touchstart', termsResumeOnInteract, { once: true });
+
+        window.addEventListener('pageshow', () => {
+            try { if (localStorage.getItem(TERMS_CONSENT_KEY) === '1') { termsTryPlayAudio(); } } catch (_) {}
+            document.addEventListener('click', termsResumeOnInteract, { once: true });
+            document.addEventListener('keydown', termsResumeOnInteract, { once: true });
+            document.addEventListener('pointerdown', termsResumeOnInteract, { once: true });
+            document.addEventListener('touchstart', termsResumeOnInteract, { once: true });
+        });
+    </script>
+</body>
+</html>
