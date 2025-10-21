@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official vs Fan-made - Touhou Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="power.jpg" type="image/jpeg">
+    <style>
+    .content-page {
+        margin-top: -80px;
+    }
+    
+    .content-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+    
+    .content-section p {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+    body {
+        background: url('yuk.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    /* Blur overlay */
+    .bg-blur-overlay {
+        position: fixed;
+        inset: 0;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        pointer-events: none;
+        z-index: 0;
+    }
+    /* Ensure content sits above overlay */
+    .hero, .content-page, footer {
+        position: relative;
+        z-index: 1;
+    }
+    /* Box all text elements for readability */
+    .content-section h2,
+    .content-section p,
+    .album-caption {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+    }
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #000;
+        transform: translateY(-2px);
+    }
+</style>
+</head>
+<body>
+    <div class="bg-blur-overlay"></div>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>OFFICIAL <span>VS</span> FAN-MADE</h1>
+            <p class="subtitle">Understanding what makes a Touhou work official</p>
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <main class="content-page">
+        <section class="content-section">
+            <div class="back-link" style="margin: 0 0 1rem 0;">
+                <a href="index.html" class="btn btn-primary">← Back to Home</a>
+            </div>
+            <h2>Official vs Fan-made Content</h2>
+            <p>A lot of Touhou's appeal is its many, extensive fan works created across decades! While this is amazing, this also comes with the downside of it being difficult to know what is official and what is not.</p>
+            
+            <p>A lot of confusion comes from Touhou music. Official music is heard in-game and from ZUN's albums. Here, we will use an example from Hifuu Club, a separate album-based side story connected to Touhou. You can tell this is official due to ZUN's art style and sound of the album, being completely instrumental.</p>
+
+            <div class="album-showcase">
+                <div class="album">
+                    <img src="hifuu.png.jpeg" alt="Hifuu Club Album" class="album-cover">
+                    <p class="album-caption">Official Hifuu Club album by ZUN. Can be listened to <a href="https://www.youtube.com/playlist?list=PL1SU-FO26D2lUYyBNA8htkz9DR361rWyn" target="_blank" style="color: #ff6b6b; text-decoration: none; font-weight: bold;">here</a>.</p>
+                </div>
+                <div class="album">
+                    <img src="tbo.png.jpg" alt="Touhou Big-Olive Arrangement" class="album-cover">
+                    <p class="album-caption">An arrangement album by doujin rock band Sekkenya, using music from Hifuu Club as a basis. Can be listened to <a href="https://open.spotify.com/album/3MD5gkvsxk3CMq89930QDg?si=Gt2df2W2T2GTdSSV-A2Vsw" target="_blank" style="color: #ff6b6b; text-decoration: none; font-weight: bold;">here</a>. Spotify link due to region locking on YouTube Music</a>.</p>
+                </div>
+            </div>
+             <p>Did you know that the song playing on this page right now, assuming you have audio enabled, is from a doujin arrangement album?</p>
+
+            <p>While this is a good rule of thumb to follow, ZUN often endorses or officially licenses Touhou works. Touhou Lost Word, a mobile game, is officially licensed by ZUN, or in this case, Team Shanghai Alice. ZUN however, often has little to no involvement in these works.</p>
+
+            <p>Official Touhou art is also fairly easy to spot. In this case, official art will refer to art completely made by ZUN, such as in Touhou games. ZUN has a distinct art style that many artists have not fully replicated yet. For example, did you know the Reimu and Marisa sprites in the main page of this website are not official, and are from the fan-game, "Puppet Dance Performance"? The background of the main page is also unofficial, using art from Touhou New World.</p>
+
+<div class="album-showcase">
+    <div class="album">
+        <img src="615px-Th20Reimu.png" alt="Official Reimu Sprite" class="album-cover" style="background:#ffffff;">
+        <p class="album-caption">Official Reimu art from the newest Touhou game, Touhou 20: Fossilized Wonders.</p>
+    </div>
+    <div class="album">
+        <img src="reimain.png" alt="Fan-made Reimu Sprite" class="album-cover" style="background:#ffffff;">
+        <p class="album-caption">Fan-made Reimu art from Puppet Dance Performance</p>
+    </div>
+</div>
+
+            
+        </section>
+    </main>
+    <audio id="ovf-bgm" src="ccs.mp3" preload="auto" loop></audio>
+    <div id="ovf-song-toast" style="position: fixed; left: 24px; top: 64px; transform: none; background: rgba(0,0,0,0.8); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; z-index: 2000; opacity: 0; transition: opacity 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; font-family: 'Montserrat', 'Arial', sans-serif; font-weight: 700;">
+        <a href="https://open.spotify.com/album/4cho2kcvmeAdAVCwF5rB0P" target="_blank" rel="noopener" style="color: #fff; text-decoration: underline; text-underline-offset: 2px; cursor: pointer;">Now Playing: 石鹸屋(Sekkenya)- 上海珈琲-Chinese Coffee- from "~Feast of roaring beast~"</a>
+        <button id="ovf-enable-audio" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; cursor: pointer; font-size: 0.85rem; line-height: 1; padding: 4px 8px; border-radius: 4px;">Enable Audio</button>
+        <button id="ovf-toast-close" aria-label="Close" style="background: transparent; border: 0; color: #fff; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 4px;">×</button>
+    </div>
+
+    <script>
+        const nav = document.querySelector('.main-nav');
+        const audio = document.getElementById('ovf-bgm');
+        const toast = document.getElementById('ovf-song-toast');
+        const CONSENT_KEY = 'ovf_bgm_consent';
+        let started = false;
+
+        function hideToast() {
+            if (!toast) return;
+            toast.style.opacity = '0';
+            setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+        }
+
+        function showToast() {
+            if (!toast) return;
+            toast.style.opacity = '1';
+            setTimeout(() => { hideToast(); }, 6000);
+        }
+
+        function positionToastBelowNav() {
+            if (!toast) return;
+            let top = 64;
+            if (nav) {
+                top = nav.getBoundingClientRect().height + 12;
+            }
+            toast.style.top = top + 'px';
+            toast.style.left = '24px';
+        }
+
+        function tryPlayAudio() {
+            if (!audio) return;
+            try { audio.autoplay = true; } catch (_) {}
+            if (!started) { try { audio.currentTime = 0; } catch (_) {} }
+            audio.play().then(() => {
+                try { localStorage.setItem(CONSENT_KEY, '1'); } catch (_) {}
+                started = true;
+            }).catch(() => {});
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showToast();
+            positionToastBelowNav();
+            try { if (localStorage.getItem(CONSENT_KEY) === '1') { tryPlayAudio(); } else { tryPlayAudio(); } } catch (_) { tryPlayAudio(); }
+            const closeBtn = document.getElementById('ovf-toast-close');
+            if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); hideToast(); });
+            const enableBtn = document.getElementById('ovf-enable-audio');
+            if (enableBtn) enableBtn.addEventListener('click', (e) => { e.stopPropagation(); tryPlayAudio(); });
+        });
+
+        window.addEventListener('resize', positionToastBelowNav);
+
+        const resumeOnInteract = () => {
+            tryPlayAudio();
+            document.removeEventListener('click', resumeOnInteract);
+            document.removeEventListener('keydown', resumeOnInteract);
+            document.removeEventListener('pointerdown', resumeOnInteract);
+            document.removeEventListener('touchstart', resumeOnInteract);
+        };
+        document.addEventListener('click', resumeOnInteract, { once: true });
+        document.addEventListener('keydown', resumeOnInteract, { once: true });
+        document.addEventListener('pointerdown', resumeOnInteract, { once: true });
+        document.addEventListener('touchstart', resumeOnInteract, { once: true });
+
+        window.addEventListener('pageshow', () => {
+            try { if (localStorage.getItem(CONSENT_KEY) === '1') { tryPlayAudio(); } } catch (_) {}
+            document.addEventListener('click', resumeOnInteract, { once: true });
+            document.addEventListener('keydown', resumeOnInteract, { once: true });
+            document.addEventListener('pointerdown', resumeOnInteract, { once: true });
+            document.addEventListener('touchstart', resumeOnInteract, { once: true });
+        });
+    </script>
+    <footer>
+        <p>2025. This is an unofficial fanpage not affiliated or endorsed by Team Shanghai Alice.</p>
+    </footer>
+</body>
+</html>

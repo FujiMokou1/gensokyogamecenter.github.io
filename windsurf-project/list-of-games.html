@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Games - Touhou Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="power.jpg" type="image/jpeg">
+    <style>
+        .games-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .game-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .game-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+            padding: 1rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .pc98-image {
+            height: 300px; /* Taller height for PC-98 game covers */
+        }
+        .game-cover {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        .game-info {
+            padding: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .game-year {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .game-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 2rem 0 1rem 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+        }
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: #333;
+        }
+        /* Ensure toast uses site font */
+        #log-song-toast, #log-song-toast button {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+        /* Page background */
+        body {
+            background: url('lof.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        /* Blur overlay */
+        .bg-blur-overlay {
+            position: fixed;
+            inset: 0;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Ensure content sits above overlay */
+        .hero, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+        /* Box unreadable standalone text */
+        .section-title,
+        .era-title,
+        .section-intro {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        /* Center era titles as boxes */
+        .era-title {
+            text-align: center;
+            display: table;
+            margin: 0.5rem auto 1rem auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blur-overlay"></div>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>LIST OF <span>GAMES</span></h1>
+            <p class="subtitle">Every Touhou game so far!</p>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <main>
+        <h3 class="era-title">PC-98 Era</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th01cover.jpg" alt="Touhou 1: Highly Responsive to Prayers" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Highly Responsive to Prayers</h3>
+                    <span class="game-year">1996</span>
+                    <p class="game-description">The game that started it all! Despite what the rest of the series would become, Touhou 1 is a breakout styled game.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th02cover.jpg" alt="Touhou 2: Story of Eastern Wonderland" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Story of Eastern Wonderland</h3>
+                    <span class="game-year">1997</span>
+                    <p class="game-description">The very first game in the series to feature the danmaku gameplay Touhou is known for!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th03cover.jpg" alt="Touhou 3: Phantasmagoria of Dim. Dream" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Phantasmagoria of Dim. Dream</h3>
+                    <span class="game-year">1997</span>
+                    <p class="game-description">A versus-style danmaku game, the first in the series!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th04cover.jpg" alt="Touhou 4: Lotus Land Story" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Lotus Land Story</h3>
+                    <span class="game-year">1998</span>
+                    <p class="game-description">A return to the Danmaku gameplay.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th05cover.jpg" alt="Touhou 5: Mystic Square" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Mystic Square</h3>
+                    <span class="game-year">1998</span>
+                    <p class="game-description">The final PC-98 game. It is the most refined of the PC-98 games.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="era-title">Early Windows Era</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th06cover.jpg" alt="Touhou 6: The Embodiment of Scarlet Devil" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">The Embodiment of Scarlet Devil</h3>
+                    <span class="game-year">2002</span>
+                    <p class="game-description">The first Windows game in the series, introducing the iconic danmaku gameplay.</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th07cover.jpg" alt="Touhou 7: Perfect Cherry Blossom" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Perfect Cherry Blossom</h3>
+                    <span class="game-year">2003</span>
+                    <p class="game-description">Introduces the Cherry Point system and features the four seasons theme.</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th08cover.jpg" alt="Touhou 8: Imperishable Night" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Imperishable Night</h3>
+                    <span class="game-year">2004</span>
+                    <p class="game-description">Features a unique partner system and time-based mechanics.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th09cover.jpg" alt="Touhou 9: Phantasmagoria of Flower View" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Phantasmagoria of Flower View</h3>
+                    <span class="game-year">2005</span>
+                    <p class="game-description">A versus-style danmaku entry, spiritual successor to PoDD.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="era-title">Middle Windows Era</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th10cover.jpg" alt="Touhou 10: Mountain of Faith" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Mountain of Faith</h3>
+                    <span class="game-year">2007</span>
+                    <p class="game-description">A sort of reboot for the series. Almost completely overhauling Touhou. It's influence is still seen in Touhou games today!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th11_Cover.jpg" alt="Touhou 11: Subterranean Animism" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Subterranean Animism</h3>
+                    <span class="game-year">2008</span>
+                    <p class="game-description">Features a similar partner system as Imperishable Night.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th12cover.jpg" alt="Touhou 12: Undefined Fantastic Object" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Undefined Fantastic Object</h3>
+                    <span class="game-year">2009</span>
+                    <p class="game-description">Added collectable UFOs. Similar mechanics would be introduced in later games.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="606px-Th13cover.jpg" alt="Touhou 13: Ten Desires" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Ten Desires</h3>
+                    <span class="game-year">2011</span>
+                    <p class="game-description">Introduced the Spirit Point and Trance mechanics.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="606px-Th14cover.jpg" alt="Touhou 14: Double Dealing Character" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Double Dealing Character</h3>
+                    <span class="game-year">2013</span>
+                    <p class="game-description">A return to simpler gameplay, with varied shot types.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="era-title">Current Windows Era</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th15front.jpg" alt="Touhou 15: Legacy of Lunatic Kingdom" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Legacy of Lunatic Kingdom</h3>
+                    <span class="game-year">2015</span>
+                    <p class="game-description">First and only game to use Point Device mode due to its intense difficulty. You will need it...</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th16front.jpg" alt="Touhou 16: Hidden Star in Four Seasons" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Hidden Star in Four Seasons</h3>
+                    <span class="game-year">2017</span>
+                    <p class="game-description">Introduced a seasons mechanic.</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th17cover.png" alt="Touhou 17: Wily Beast and Weakest Creature" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Wily Beast and Weakest Creature</h3>
+                    <span class="game-year">2019</span>
+                    <p class="game-description">A re-introduction of UFO's main mechanic, now with animal spirits instead of UFOs!</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th18cover.jpg" alt="Touhou 18: Unconnected Marketeers" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Unconnected Marketeers</h3>
+                    <span class="game-year">2021</span>
+                    <p class="game-description">Introduced a card power-up system. Providing a unique mix of danmaku and money management!</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th19cover.png" alt="Touhou 19: Unfinished Dream of All Living Ghost" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Unfinished Dream of All Living Ghost</h3>
+                    <span class="game-year">2023</span>
+                    <p class="game-description">The first game since Touhou 9 to bring back the versus multiplayer gameplay.</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th20cover.jpg" alt="Touhou 20: Fossilized Wonders" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Fossilized Wonders</h3>
+                    <span class="game-year">2025</span>
+                    <p class="game-description">The latest Touhou game with a focus on current world events to tell its story.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">SPIN-<span>OFF</span> GAMES</h2>
+        <p class="section-intro">Touhou has numerous spin-offs of many different genres, often providing more insight into characters and their stories!</p>
+
+        <h3 class="era-title">Photography Games</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th095cover.jpg" alt="Touhou 9.5: Shoot the Bullet" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Shoot the Bullet</h3>
+                    <span class="game-year">2005</span>
+                    <p class="game-description">The first photography danmaku game, featuring Aya as the main character!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th125cover.jpg" alt="Touhou 12.5: Double Spoiler" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Double Spoiler</h3>
+                    <span class="game-year">2010</span>
+                    <p class="game-description">Sequel to Shoot the Bullet, featuring Aya and Hatate Himekaidou as playable characters.</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th165cover.jpg" alt="Touhou 16.5: Violet Detector" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Violet Detector</h3>
+                    <span class="game-year">2018</span>
+                    <p class="game-description">Another photography danmaku game with Sumireko as the lead this time.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="era-title">Danmaku Spin-Offs</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th128cover.jpg" alt="Touhou 12.8: Great Fairy Wars" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Great Fairy Wars</h3>
+                    <span class="game-year">2010</span>
+                    <p class="game-description">Features Cirno as the main character with an ice-based spell card system.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="606px-Th143cover.jpg" alt="Touhou 14.3: Impossible Spell Card" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Impossible Spell Card</h3>
+                    <span class="game-year">2014</span>
+                    <p class="game-description">Seija takes the lead this time. Features difficult spell cards, but powerful items to help you survive!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-Th185cover.png" alt="Touhou 18.5: 100th Black Market" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">100th Black Market</h3>
+                    <span class="game-year">2022</span>
+                    <p class="game-description">Similar to Unconnected Marketeers, with the fan-favorite Marisa Kirisame as the lead.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="era-title">Twilight Frontier Games (Fighting Games)</h3>
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="606px-Th075Cover.jpg" alt="Touhou 7.5: Immaterial and Missing Power" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Immaterial and Missing Power</h3>
+                    <span class="game-year">2004</span>
+                    <p class="game-description">The first fighting game, setting the stage for the rest of the games.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="609px-Th105.jpg" alt="Touhou 10.5: Scarlet Weather Rhapsody" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Scarlet Weather Rhapsody</h3>
+                    <span class="game-year">2008</span>
+                    <p class="game-description">Similar to Immaterial and Missing Power, now with weather effects that can change the tide of the battle!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th123.jpg" alt="Touhou 12.3: Hisoutensoku" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Hisoutensoku</h3>
+                    <span class="game-year">2009</span>
+                    <p class="game-description">It's enhanced Scarlet Weather Rhapsody.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th135_cover.jpg" alt="Touhou 13.5: Hopeless Masquerade" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Hopeless Masquerade</h3>
+                    <span class="game-year">2013</span>
+                    <p class="game-description">An almost complete rework of the gameplay, now with a focus on aerial combat!</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="Th145front.jpg" alt="Touhou 14.5: Urban Legend in Limbo" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Urban Legend in Limbo</h3>
+                    <span class="game-year">2015</span>
+                    <p class="game-description">Aerial combat.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="607px-TH155front.jpg" alt="Touhou 15.5: Antinomy of Common Flowers" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Antinomy of Common Flowers</h3>
+                    <span class="game-year">2017</span>
+                    <p class="game-description">A rework of the gameplay, with a master and slave, yes this is what it is called, system, similar to the partner system seen in the danmaku games.</p>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="600px-Th175_cover.jpg" alt="Touhou 17.5: Sunken Fossil World" class="game-cover">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Sunken Fossil World</h3>
+                    <span class="game-year">2021</span>
+                    <p class="game-description">Quite literally described as a "horizontal side-scrolling danmaku water action game"</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <audio id="log-bgm" src="td3.mp3" preload="auto" loop></audio>
+    <div id="log-song-toast" style="position: fixed; left: 24px; top: 64px; transform: none; background: rgba(0,0,0,0.8); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; z-index: 2000; opacity: 0; transition: opacity 0.3s ease; pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; font-family: 'Montserrat', 'Arial', sans-serif; font-weight: 700;">Now Playing: Ten Desires OST - Let's Live in a Lovely Cemetery <button id="log-enable-audio" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; cursor: pointer; font-size: 0.85rem; line-height: 1; padding: 4px 8px; border-radius: 4px;">Enable Audio</button><button id="log-toast-close" aria-label="Close" style="background: transparent; border: 0; color: #fff; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 4px;">×</button></div>
+
+    <script>
+        const nav = document.querySelector('.main-nav');
+        const audio = document.getElementById('log-bgm');
+        const toast = document.getElementById('log-song-toast');
+        const CONSENT_KEY = 'log_bgm_consent';
+        let started = false;
+
+        function hideToast() {
+            if (!toast) return;
+            toast.style.opacity = '0';
+            setTimeout(() => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+        }
+
+        function showToast() {
+            if (!toast) return;
+            toast.style.opacity = '1';
+            setTimeout(() => { hideToast(); }, 6000);
+        }
+
+        function positionToastBelowNav() {
+            if (!toast) return;
+            let top = 64;
+            if (nav) {
+                top = nav.getBoundingClientRect().height + 12;
+            }
+            toast.style.top = top + 'px';
+            toast.style.left = '24px';
+        }
+
+        function tryPlayAudio() {
+            if (!audio) return;
+            try { audio.autoplay = true; } catch (_) {}
+            if (!started) { try { audio.currentTime = 0; } catch (_) {} }
+            audio.play().then(() => {
+                try { localStorage.setItem(CONSENT_KEY, '1'); } catch (_) {}
+                started = true;
+            }).catch(() => { /* blocked */ });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showToast();
+            positionToastBelowNav();
+            try { if (localStorage.getItem(CONSENT_KEY) === '1') { tryPlayAudio(); } else { tryPlayAudio(); } } catch (_) { tryPlayAudio(); }
+            const closeBtn = document.getElementById('log-toast-close');
+            if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); hideToast(); });
+            const enableBtn = document.getElementById('log-enable-audio');
+            if (enableBtn) enableBtn.addEventListener('click', (e) => { e.stopPropagation(); tryPlayAudio(); });
+        });
+
+        window.addEventListener('resize', positionToastBelowNav);
+
+        const resumeOnInteract = () => {
+            tryPlayAudio();
+            document.removeEventListener('click', resumeOnInteract);
+            document.removeEventListener('keydown', resumeOnInteract);
+            document.removeEventListener('pointerdown', resumeOnInteract);
+            document.removeEventListener('touchstart', resumeOnInteract);
+        };
+        document.addEventListener('click', resumeOnInteract, { once: true });
+        document.addEventListener('keydown', resumeOnInteract, { once: true });
+        document.addEventListener('pointerdown', resumeOnInteract, { once: true });
+        document.addEventListener('touchstart', resumeOnInteract, { once: true });
+
+        window.addEventListener('pageshow', () => {
+            try { if (localStorage.getItem(CONSENT_KEY) === '1') { tryPlayAudio(); } } catch (_) {}
+            document.addEventListener('click', resumeOnInteract, { once: true });
+            document.addEventListener('keydown', resumeOnInteract, { once: true });
+            document.addEventListener('pointerdown', resumeOnInteract, { once: true });
+            document.addEventListener('touchstart', resumeOnInteract, { once: true });
+        });
+    </script>
+
+    <footer>
+        <p>2025. This is an unofficial fanpage not affiliated or endorsed by Team Shanghai Alice.</p>
+    </footer>
+</body>
+</html>
